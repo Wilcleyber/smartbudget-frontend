@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartBudget - Gestão Financeira</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- ===========================
+       Página de Login
+       =========================== -->
+  <section id="loginPage">
+    <h1>SmartBudget</h1>
+    <div class="login-container">
+      <input type="text" id="username" placeholder="Usuário">
+      <button onclick="loginUser()">Login</button>
+      <button onclick="registerUser()">Registrar</button>
+      <button onclick="loginVisitor()">Entrar como Visitante</button>
+    </div>
+  </section>
+
+  <!-- ===========================
+       Dashboard de Transações
+       =========================== -->
+  <section id="dashboardPage" style="display:none;">
+    <h2>Minhas Transações</h2>
+    <div class="filter-bar">
+      <button onclick="showAnalytics()">Ver Análise Financeira</button>
+      <button onclick="showNewTransactionModal()">Nova Transação</button>
+      <button onclick="logout()">Sair / Voltar ao Login</button>
+    </div>
+    <div class="transaction-list" id="transactionList"></div>
+
+    <!-- Modal Nova Transação -->
+    <div id="newTransactionModal" style="display:none;">
+      <h3>Nova Transação</h3>
+      <input type="text" id="transName" placeholder="Nome">
+      <input type="number" id="transValue" placeholder="Valor">
+      <input type="date" id="transDate">
+      <select id="transType">
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+      <input type="text" id="transCategory" placeholder="Categoria">
+      <input type="text" id="transDescription" placeholder="Descrição">
+      <button onclick="addTransaction()">Salvar</button>
+      <button onclick="closeNewTransactionModal()">Cancelar</button>
+    </div>
+
+    <!-- Modal Editar Transação -->
+    <div id="editTransactionModal" style="display:none;">
+      <h3>Editar Transação</h3>
+      <input type="text" id="editTransName" placeholder="Nome">
+      <input type="number" id="editTransValue" placeholder="Valor">
+      <input type="date" id="editTransDate">
+      <select id="editTransType">
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+      <input type="text" id="editTransCategory" placeholder="Categoria">
+      <input type="text" id="editTransDescription" placeholder="Descrição">
+      <button onclick="updateTransaction()">Salvar Alterações</button>
+      <button onclick="closeEditTransactionModal()">Cancelar</button>
+    </div>
+
+  </section>
+
+  <!-- ===========================
+       Dashboard Analítico
+       =========================== -->
+  <section id="analyticsPage" style="display:none;">
+    <h2>Análise Financeira</h2>
+    <button onclick="logout()">Sair / Voltar ao Login</button>
+    <div class="cards">
+      <div id="cardReceitas">Receitas: R$0</div>
+      <div id="cardDespesas">Despesas: R$0</div>
+      <div id="cardSaldo">Saldo: R$0</div>
+    </div>
+    <canvas id="chartCategorias"></canvas>
+    <canvas id="chartMensal"></canvas>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
